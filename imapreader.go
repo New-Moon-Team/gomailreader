@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"mailreader/proxy"
 	"mime"
 	"mime/multipart"
 	"net/mail"
 	"strings"
 	"time"
 
+	"github.com/New-Moon-Team/gomailreader/proxy"
 	"github.com/emersion/go-imap"
 	"github.com/emersion/go-imap/client"
 )

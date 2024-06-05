@@ -6,12 +6,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"mailreader/proxy"
 	"mime"
 	"mime/multipart"
 	"strings"
 	"time"
 
+	"github.com/New-Moon-Team/gomailreader/proxy"
 	"github.com/denisss025/go-pop3-client"
 )
 

@@ -1,4 +1,4 @@
-module mailreader
+module github.com/New-Moon-Team/gomailreader
 
 go 1.22.3
 
@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21 // indirect
+	github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.16.0 // indirect
 )
