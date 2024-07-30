@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/New-Moon-Team/gomailreader/proxy"
+
 	"github.com/emersion/go-imap"
 	"github.com/emersion/go-imap/client"
 )
@@ -54,7 +55,10 @@ func (r *ImapReader) BoxGetAll(mailbox MailBox, res *[]byte) error {
 }
 func (r *ImapReader) GetAllBoxes() error {
 	//TODO: implement further on demand
-	d := proxy.Direct
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return err
+	}
 
 	addr := fmt.Sprintf("%v:%s", r.Server, "993")
 
@@ -86,7 +90,10 @@ func (r *ImapReader) GetAllBoxes() error {
 	return nil
 }
 func (r *ImapReader) GetLatestMsgOf(ctx context.Context, res *[]byte, box, receiver string) error {
-	d := proxy.Direct
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return err
+	}
 
 	addr := fmt.Sprintf("%v:%s", r.Server, "993")
 
@@ -278,7 +285,14 @@ func (r *ImapReader) gmailBoxGetAll(box string) ([]ImapMail, error) {
 
 	var mails []ImapMail
 
-	d := proxy.Direct
+	if r.Proxy == nil {
+		return mails, ErrNoProxy
+	}
+
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return mails, err
+	}
 
 	addr := fmt.Sprintf("%v:%s", r.Server, "993")
 
@@ -409,7 +423,14 @@ func (r *ImapReader) hotmailBoxGetAll(box string) ([]ImapMail, error) {
 
 	var mails []ImapMail
 
-	d := proxy.Direct
+	if r.Proxy == nil {
+		return mails, ErrNoProxy
+	}
+
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return mails, err
+	}
 
 	addr := fmt.Sprintf("%v:%s", r.Server, "993")
 

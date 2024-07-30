@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/New-Moon-Team/gomailreader/proxy"
+
 	"github.com/denisss025/go-pop3-client"
 )
 
@@ -62,7 +63,14 @@ func (r *Pop3Reader) gmailBoxGetAll(box string) ([]Pop3Mail, error) {
 
 	var mails []Pop3Mail
 
-	d := proxy.Direct
+	if r.Proxy == nil {
+		return mails, ErrNoProxy
+	}
+
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return mails, err
+	}
 
 	addr := fmt.Sprintf("%v:%v", r.Server, 995)
 
@@ -160,7 +168,14 @@ func (r *Pop3Reader) hotmailBoxGetAll(box string) ([]Pop3Mail, error) {
 
 	var mails []Pop3Mail
 
-	d := proxy.Direct
+	if r.Proxy == nil {
+		return mails, ErrNoProxy
+	}
+
+	d, err := proxy.NewHTTPDialer(r.Proxy)
+	if err != nil {
+		return mails, err
+	}
 	fmt.Printf("start dialing server: %v\n", r.Server)
 
 	addr := fmt.Sprintf("%v:%v", r.Server, 995)

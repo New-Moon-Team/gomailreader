@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"time"
+
+	"github.com/New-Moon-Team/gomailreader/proxy"
 )
 
 type Reader interface {
@@ -18,6 +20,7 @@ type ReaderConfig struct {
 	Server   ServerMail
 	User     string
 	Password string
+	Proxy    *proxy.Config
 }
 
 var (

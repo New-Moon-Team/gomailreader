@@ -5,6 +5,7 @@ go 1.22.3
 require (
 	github.com/denisss025/go-pop3-client v0.0.0-20190319130039-5d933712d223
 	github.com/emersion/go-imap v1.2.1
+	golang.org/x/net v0.27.0
 )
 
 require (
